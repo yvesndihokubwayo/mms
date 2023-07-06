@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Login</title>
+  <link href="assets/img/tt.png" rel="icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background-color: orange;
+      box-shadow: 0 0 10px rgba(11, 3, 168, 0.9);
+      padding: 50px;
+      border-radius: 5px;
+      width: 350px; /* Adjust width as needed */
+      align-items: center;
+    }
+
+    input {
+        font-size: 20px;
+    }
+    .container h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: transparent;
+      color: white;
+      border-bottom: 2px solid white;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: white;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 20px;
+      left: 10px;
+      transition: transform 0.3s, font-size 0.3s, top 0.3s;
+      pointer-events: none;
+      color: white;
+    }
+
+    .form-group input:focus ~ label,
+    .form-group input:valid ~ label {
+      transform: translateY(-20px);
+      font-size: 18px;
+      top: 0;
+      color: black; /* Placeholder color when typing */
+    }
+
+    #lgn {
+      background-color: rgb(255, 123, 0);
+      color: #FFFF;
+      border: 1px solid #fff;
+      padding: 5px 10px;
+      border-radius: 35px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      display: block;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    #lgn:hover {
+      background-color: rgb(7, 92, 230); /* Hovering red color */
+      color: white;
+      border-color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+      <!-- Your loading screen markup -->
+      <div id="loader">
+        <h2 style="font-size: 30px; text-align: center; margin-top: 20%;">
+          Welcome to Admin Panel<br>Loading...</h2>
+        </div>
+      <div id="main-content" style="display: none;">
+    
+      <!-- ======= Header ======= -->
+      <header id="header" class="header fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    
+          <a href="index.php" class="logo d-flex align-items-center">
+            <img src="assets/img/tt.png" alt="">
+            <span>M-M^S</span>
+          </a>
+    
+          <nav id="navbar" class="navbar">
+            <ul>
+              <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+              <li><a class="nav-link scrollto" href="#about">About</a></li>
+              <li><a class="nav-link scrollto" href="#services">Services</a></li>
+              <!--<li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>-->
+              <li><a class="nav-link scrollto" href="#team">Team</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+              <li class="dropdown"><a href="#"><span class="getstarted scrollto">Join Us</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                      <li><a class="getstarted scrollto" href="mentees_sign_in&up.html" target="_blank">Join as a Mentee</a></li><br>
+                      <li><a class="getstarted scrollto" href="mentors_sign_in&up.html" target="_blank">Join as a Mentor</a></li><br>
+                      <li><a class="getstarted scrollto" href="adminlogin.html" target="_blank">Join as an Admin</a></li>
+                    </ul>
+              </li>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav><!-- .navbar -->
+    
+        </div>
+      </header><!-- End Header -->
+      <div>
+
+      </div>
+  <div class="container">
+    <h1>Admin Panel</h1>
+    <form id="loginForm" action="admin_receiver.php" method="POST">
+      <div class="form-group">
+        <input type="text" id="adminID" name="adminID" placeholder="Enter your Admin ID" required>
+        <label for="adminID">Admin ID</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <label for="email">Email</label>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <label for="password">Password</label>
+      </div>
+      <button type="submit" name="signin" id="lgn">Login as an Admin</button>
+    </form>
+  </div>
+
+  <script>
+   // Wait for the page to load
+   window.addEventListener('load', function() {
+     // Find the loading screen element
+     var loader = document.getElementById('loader');
+
+     // Set a timeout to hide the loading screen after 3 seconds (3000 milliseconds)
+     setTimeout(function() {
+       // Hide the loading screen
+       loader.style.display = 'none';
+       // Show the main content
+       document.getElementById('main-content').style.display = 'block';
+     }, 2000);
+   });
+ </script>
+</body>
+</html>

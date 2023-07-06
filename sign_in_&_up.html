@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mentee Page</title>
+	<link rel="icon" type="images/x-icon" href="assets/img/tt.png">
+	<script src="https://kit.fontawesome.com/cc99602186.js" crossorigin="anonymous"></script>
+	<style type="text/css">
+		@charset "ISO-8859-1";
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+body{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: #f2a304;
+}
+
+.wrapper{
+	position: relative;
+	width: 400px;
+	height: 600px;
+	background:#fff;
+	border-radius: 20px;
+	box-shadow: 5px 5px 8px #040f8b;
+	padding-right: 70px;
+	padding-left: 40px;
+	padding-top: 80px;
+	padding-bottom: 80px;
+	height: calc(100% - 30px);
+	background: #fff;
+	z-index: 1;
+}
+
+.wrapper:hover{
+	animation: animate 0.5s linear infinite;
+}
+
+.form-wrapper{
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	transition: 1s ease-in-out;
+}
+
+.wrapper.active .form-wrapper.sign-in {
+	transform: scale(0) translate(-300px, 500px);
+}
+
+.wrapper .form-wrapper.sign-up {
+	position: absolute;
+	top: 0;
+	transform: scale(0) translate(-200px, 500px);
+}
+
+.wrapper.active .form-wrapper.sign-up {
+	transform: scale(1) translate(0, 0);
+}
+
+h2{
+	font-size: 30px;
+	color: #02076a;
+	text-align: center;
+}
+
+.input-group{
+	position: relative;
+	margin: 30px 0;
+	border-bottom: 2px solid #fc9104;
+}
+
+.input-group label{
+	position: absolute;
+	top: 50%;
+	left: 5px;
+	transform: translateY(-50%);
+	font-size: 16px;
+	color: rgb(1, 10, 90);
+	pointer-events: none;
+	transition: 0.5s;
+}
+
+.input-group input{
+	width: 320px;
+	height: 40px;
+	font-size: 16px;
+	color: rgb(0, 2, 112);
+	padding: 0 5px;
+	background: transparent;
+	border: none;
+	outline: none;
+}
+
+.input-group input:focus ~label,
+.input-group input:valid ~label{
+	top: -5px;
+	color: rgb(248, 178, 3);
+}
+
+.remember{
+	margin: -5px 0 15px 5px;
+}
+
+.remember label{
+	color: rgb(0, 0, 97);
+	font-size: 14px;
+}
+
+.remember label input{
+	accent-color: #ffaf02;
+}
+
+button{
+	position: relative;
+	width: 100%;
+	height: 40px;
+	background: #f4a802;
+	font-size: 16px;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 30px;
+	border: none;
+	outline: none;
+}
+button:hover{
+	color: white;
+	background: #180472;
+	
+}
+.signUp-link{
+	font-size: 14px;
+	text-align: center;
+	margin: 15px 0;
+}
+
+.signUp-link p{
+	color: rgb(5, 4, 93);
+}
+
+.signUp-link p a{
+	color: #f2a304;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.signUp-link p a:hover{
+	text-decoration: underline;
+    color: #27d60c;
+}
+
+.social-platform{
+	font-size: 14px;
+	color: rgb(42, 3, 115);
+	text-align: center;
+}
+
+.social-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background: transparent;
+	border: 1px solid rgb(255, 174, 0);
+	border-radius: 50%;
+	text-align: center;
+	line-height: 35px;
+	margin: 15px 6px 0;
+	transform: .3s;
+}
+
+.social-icons a:hover{
+	background: rgb(240, 133, 2);
+	border: none;
+}
+
+.social-icons a i{
+	color: #ffaa00;
+	font-size: 14px;
+	transform: .3s;
+}
+
+.social-icons a:hover i{
+	color: rgba(0, 0, 0, .3);
+}
+
+/* New CSS for multi-step signup form */
+
+.step {
+	display: none;
+}
+
+.step.active {
+	display: block;
+}
+
+.step-buttons {
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.step-buttons button {
+	width: 100px;
+	height: 40px;
+	background: #f4a802;
+	font-size: 16px;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 30px;
+	border: none;
+	outline: none;
+}
+#loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0.5, 0.5, 0.5, 05);
+  background: linear-gradient(-45deg, #ffa500, #ffff, #ffa400, #ffff, #ffa500);
+  background-size: 400% 400%;
+  animation: backgroundAnimation 7s linear infinite;
+  color: #ffff;
+}
+</style>
+</head>
+<body>
+	  <!-- Your loading screen markup -->
+	  <div id="loader">
+		<h2 style="font-size: 30px; text-align: center; margin-top: 20%;">
+		  You're joining as mentee<br>Loading...</h2>
+		</div>
+
+	  <div id="main-content" style="display: none;">
+	<div class="wrapper">
+		<div class="form-wrapper sign-in">
+			<form action="LoginD.jsp" method="post">
+				<h2>Login as a mentee</h2>
+				<div class="input-group">
+				  <input type="text" name="Username" required>
+				  <label for="">Username</label>
+				</div>
+				<div class="input-group">
+				  <input type="password" name="Password" required>
+				  <label for="">Password</label>
+				</div>
+				<div class="remember">
+				  <label for=""><input type="checkbox">Remember me</label>
+				</div>
+				<div class="step-buttons">
+					<button type="submit">Login</button>
+				</div>
+				<div class="signUp-link">
+				  <p>Don't have an account? <a href="#" class="signUpBtn-link">Sign Up</a></p>
+				</div>
+				<div class="social-platform">
+				  <p>Or sign in with</p>
+				  <div class="social-icons">
+				    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+				    <a href="#"><i class="fa-brands fa-google"></i></a>
+				    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+				  </div>
+				</div>
+			</form>
+		</div>
+		<div class="form-wrapper sign-up">
+			<form action="sign_in_&_up.php" method="post">
+				<h2>Sign Up as a mentee</h2>
+				<div class="step step-1 active">
+					<div class="input-group">
+					  <input type="text" name="fullname" required>
+					  <label for="">Full name</label>
+					</div>
+					<div class="input-group">
+					  <input type="email" name="email" required>
+					  <label for="">Email Address</label>
+					</div>
+					<div class="input-group">
+					  <input type="text" name="username" required>
+					  <label for="">Username</label>
+					</div>
+					<div class="input-group">
+					  <input type="password" name="password" required>
+					  <label for="">Password</label>
+					</div>
+					<div class="input-group">
+					  <input type="password" name="password" required>
+					  <label for="">Confirm password</label>
+					</div>
+				</div>
+				<div class="step step-2">
+					<div class="input-group">
+					  <input type="text" name="gender" required>
+					  <label for="">Gender</label>
+					</div>
+					<div class="input-group">
+					  <input type="text" name="age" required>
+					  <label for="">Age</label>
+					</div>
+					<div class="input-group">
+					  <input type="text" name="phone" required>
+					  <label for="">Phone</label>
+					</div>
+					<div class="input-group">
+					  <input type="text" name="national_id" required>
+					  <label for="">National ID</label>
+					</div>
+					<div class="input-group">
+					  <input type="text" name="location" required>
+					  <label for="">Location</label>
+					</div>
+				</div>
+				<div class="step step-3">
+					<div class="input-group">
+					  <input type="text" name="area_of_interest" required>
+					  <label for="">Area of Interest</label>
+					</div>
+					<div class="input-group">
+					  <input type="text" name="message" required>
+					  <label for="">Message</label>
+					</div>
+				</div>
+				<div class="step-buttons">
+					<button type="button" onclick="prevStep()">Back</button>
+					<button type="button" onclick="nextStep(2)">Next</button>
+				</div>
+				<a href="sign_in_&_up.html">
+				<button type="submit" class="final-submit" style="display: none;">Sign Up</button>
+				</a>
+				<div class="signUp-link">
+				  <p>Already have an account? <a href="#" class="signInBtn-link">Sign In</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+		const signUpBtnLink = document.querySelector('.signUpBtn-link');
+		const signInBtnLink = document.querySelector('.signInBtn-link');
+		const wrapper = document.querySelector('.wrapper');
+	  
+		signUpBtnLink.addEventListener('click', () => {
+		  wrapper.classList.toggle('active');
+		});
+		signInBtnLink.addEventListener('click', () => {
+		  wrapper.classList.toggle('active');
+		});
+	  
+		let currentStep = 1;
+		const form = document.querySelector('form');
+		const steps = Array.from(document.querySelectorAll('.step'));
+		const stepButtons = document.querySelector('.step-buttons');
+		const finalSubmitButton = document.querySelector('.final-submit');
+	  
+		function validateStep() {
+		  const inputs = Array.from(steps[currentStep - 1].querySelectorAll('input[required]'));
+		  return inputs.every((input) => input.value.trim() !== '');
+		}
+	  
+		function nextStep() {
+		  if (currentStep < steps.length) {
+			const isValid = validateStep();
+	  
+			if (isValid) {
+			  steps[currentStep - 1].classList.remove('active');
+			  steps[currentStep].classList.add('active');
+			  currentStep++;
+	  
+			  if (currentStep === steps.length) {
+				stepButtons.innerHTML = `
+				  <button type="button" onclick="prevStep()">Back</button>
+				  <button type="submit">Sign Up</button>
+				`;
+				finalSubmitButton.style.display = 'block';
+			  } else {
+				stepButtons.innerHTML = `
+				  <button type="button" onclick="prevStep()">Back</button>
+				  <button type="button" onclick="nextStep()">Next</button>
+				`;
+				finalSubmitButton.style.display = 'none';
+			  }
+			} else {
+			  alert('Please fill out all the necessary information.');
+			}
+		  }
+		}
+	  
+		function prevStep() {
+		  if (currentStep > 1) {
+			steps[currentStep - 1].classList.remove('active');
+			steps[currentStep - 2].classList.add('active');
+			currentStep--;
+	  
+			if (currentStep === steps.length - 1) {
+			  stepButtons.innerHTML = `
+				<button type="button" onclick="prevStep()">Back</button>
+				<button type="submit">Sign Up</button>
+			  `;
+			  finalSubmitButton.style.display = 'block';
+			} else {
+			  stepButtons.innerHTML = `
+				<button type="button" onclick="prevStep()">Back</button>
+				<button type="button" onclick="nextStep()">Next</button>
+			  `;
+			  finalSubmitButton.style.display = 'none';
+			}
+		  }
+		}
+	  
+		form.addEventListener('submit', (e) => {
+		  const isValid = validateStep();
+	  
+		  if (!isValid) {
+			e.preventDefault();
+			alert('Please fill out all the necessary information.');
+		  }
+		});
+	  </script>
+	     <script>
+			// Wait for the page to load
+			window.addEventListener('load', function() {
+			  // Find the loading screen element
+			  var loader = document.getElementById('loader');
+		
+			  // Set a timeout to hide the loading screen after 3 seconds (3000 milliseconds)
+			  setTimeout(function() {
+				// Hide the loading screen
+				loader.style.display = 'none';
+				// Show the main content
+				document.getElementById('main-content').style.display = 'block';
+			  }, 2000);
+			});
+		  </script>
+</body>
+</html>

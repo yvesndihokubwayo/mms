@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style type="text/css">
+  .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: orange;
+}
+
+.chat-box {
+  width: 600px;
+  height: 500px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0.9, 0.8, 0.8, 0.8);
+  border: 0.5px solid darkblue;
+}
+
+.chat-header {
+  background-color: orange;
+  color: white;
+  padding: 10px;
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.chat-body {
+  height: 400px;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.chat-body .message {
+  background-color: #EE90E4;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding-right: 50px;
+}
+
+    .recipient-chat-footer {
+      padding: 10px;
+    }
+
+    .recipient-chat-footer form {
+      display: flex;
+      align-items: center;
+    }
+
+    .recipient-chat-footer input[type="text"] {
+      flex-grow: 1;
+      padding: 5px;
+      border: none;
+      outline: none; 
+      border-radius: 5px;
+    }
+
+    .recipient-chat-footer button[type="submit"] {
+      padding: 5px 10px;
+      background-color: orange;
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 5px;
+    }
+
+    .recipient-chat-footer button[type="submit"]:hover {
+      background-color: darkgreen;
+    }
+  </style>
+  <body>
+  <div class="container">
+    <div class="chat-box">
+      <div class="chat-header">
+        <h2>Mentor Mentee Chat</h2>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <!-- Chat messages will be appended here -->
+      </div>
+      <div class="recipient-chat-footer">
+        <form id="recipientMessageForm" onsubmit="sendRecipientMessage(event)">
+          <input type="text" id="recipientMessageInput" placeholder="Type your reply...">
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+ function sendRecipientMessage(event) {
+      event.preventDefault();
+
+      var recipientMessageInput = document.getElementById("recipientMessageInput");
+      var message = recipientMessageInput.value.trim();
+
+      if (message !== "") {
+        var chatBody = document.getElementById("chatBody");
+        var messageElement = document.createElement("div");
+        messageElement.className = "message";
+        messageElement.textContent = message;
+
+        chatBody.appendChild(messageElement);
+
+        // Clear input field after sending
+        recipientMessageInput.value = "";
+        recipientMessageInput.focus();
+
+        // Display confirmation pop-up
+        setTimeout(function() {
+          alert("Wow! Your message has been received. Please wait for a reply.");
+        }, 1000);
+      } else {
+        alert("Please enter a message before sending.");
+      }
+    }
+  </script>
+</body>
+</html>

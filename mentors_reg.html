@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <link rel="icon" type="images/x-icon" href="assets/img/tt.png">
+  <style type="text/css"> 
+    /* Add this to the existing CSS styles */
+    body {
+    	background-color: white;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: orange;
+    }
+
+    .registration-form {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0.9, 0.9, 0.9, 0.9);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .form-row {
+    	margin-bottom: 20px;
+    }
+
+    .xxx .form-row {
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    margin-bottom: 20px;
+    }
+
+    .xxxx .form-holder {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .form-holder {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+    }
+
+    .form-holder input,
+    .form-holder select,
+    .form-holder textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  
+  .form-select {
+    width: 28%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+
+	.radio-row {
+	  display: flex;
+	}
+
+	.radio-input {
+	  display: flex;
+	  align-items: center;
+	  margin-right: 20px;
+	}
+
+	.radio-input label {
+	  margin-left: 5px;
+	}
+
+	.checkbox-square label {
+	  display: flex;
+	  align-items: center;
+	}
+
+	.checkbox-square .checkbox {
+	  display: inline-block;
+	  width: 18px;
+	  height: 18px;
+	  border: 2px solid #ccc;
+	  margin-right: 10px;
+	  position: relative;
+	  background-color: orange;
+	}
+
+	.checkbox-square input[type="checkbox"] {
+	  display: none;
+	}
+
+	.checkbox-square input[type="checkbox"]:checked + .checkbox::after {
+	  content: "";
+	  position: absolute;
+	  top: 2px;
+	  left: 2px;
+	  width: 12px;
+	  height: 12px;
+	  background-color: orange;
+	}
+
+    h3 {
+      color: #ff9100;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      z-index: 1;
+    }
+
+    .dropdown li {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .select {
+      position: relative;
+      margin-right: 20px;
+    }
+
+    .select .select-control {
+      cursor: pointer;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .select .zmdi {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #ccc;
+    }
+
+    .select.open .dropdown {
+      display: block;
+    }
+
+    .form-content {
+      margin-bottom: 20px;
+    }
+
+    .form-header {
+      margin-bottom: 10px;
+    }
+
+    .form-content p {
+      margin-bottom: 10px;
+    }
+
+    .form-content textarea {
+      height: 99px;
+    }
+
+    .checkbox-circle label {
+      display: inline-block;
+    }
+
+    .form-holder.w-100 {
+      width: 100%;
+    }
+
+    .submit-button {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .submit-button button {
+      background-color: #ff9100;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .submit-button button:hover {
+      background-color: red;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="registration-form">
+      <form id="registrationForm" action="mentors_info.php" method="POST">
+        <div class="form-content">
+          <div class="form-header">
+            <h3>Mentor registration Form</h3>
+          </div>
+          <p>Please provide the following information:</p>
+          <div class="xxx">
+          <div class="form-row">
+            <div class="form-holder">
+              <input type="text" name="first_name" placeholder="First Name" required>
+            </div>
+            <div class="form-holder">
+              <input type="text" name="last_name" placeholder="Last Name" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-holder">
+              <input type="tel" name="phone" placeholder="Phone" required>
+            </div>
+            <div class="form-holder">
+              <input type="number" name="age" placeholder="Age" required>
+            </div>
+          </div>
+      </div>
+			<div class="form-row radio-row">
+			  <div class="form-holder">
+			    <div class="radio-input">
+			      <input type="radio" name="gender" value="male" required>
+			      <label for="male">Male</label>
+			    </div>
+			  </div>
+			  <div class="form-holder">
+			    <div class="radio-input">
+			      <input type="radio" name="gender" value="female" required>
+			      <label for="female">Female</label>
+			    </div>
+			  </div>
+			</div>
+          <div class="form-row">
+            <div class="form-holder">
+              <h3>Required documents</h3>
+              </div>
+              <p>Please fill with additional info:</p>
+              <div class="form-row">
+                <div class="form-holder">Diploma / Degree:
+                  <input type="file" accept="image/png, image/jpeg, application/pdf" class="form-control" name="diploma_degree_file" required>
+                </div>
+                <div class="form-holder">National ID:
+                  <input type="file" accept="image/png, image/jpeg, application/pdf" class="form-control" name="national_id_file" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-holder">CV / Resume:
+                  <input type="file" accept="image/png, image/jpeg, application/pdf" class="form-control" name="cv_resume_file" required>
+                </div>
+                <div class="form-holder">Profile Photo:
+                  <input type="file" accept="image/png, image/jpeg, application/pdf" class="form-control" name="profile_photo_file" required>
+                </div>
+              </div>
+          </div>
+          <div class="form-holder">
+            <div class="form-select">
+              <select name="education_level" required>
+                <option value="" selected disabled>Education level</option>
+                <option value="Masters">Master's</option>
+                <option value="Bachelor's">A0-Bachelor's</option>
+                <option value="Diploma">A1-Diploma</option>
+                <option value="Certificate">A2-Certificate</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+            <div class="form-select">
+              <select name="field_of_interest" required>
+                <option value="" selected disabled>Field of interest</option>
+                <option value="Education">Education and Research</option>
+                <option value="Service">Business and Service</option>
+                <option value="Leadership">Leadership</option>
+                <option value="Technology">Information Technology (IT)</option>
+                <option value="Agriculture">Agriculture and Primary Sector</option>
+                <option value="Finance">Finance and Banking</option>
+                <option value="Energy">Energy and Utilities</option>
+                <option value="Tourism">Tourism and Hospitality</option>
+              </select>
+            </div>
+            <div class="form-select">
+              <select name="location" required>
+                <option value="" selected disabled>Your location</option>
+                <option value="Kigali City">Kigali city</option>
+                <option value="Eastern Province">Eastern Province</option>
+                <option value="Western Province">Western Province</option>
+                <option value="Northern Province">Northern Province</option>
+                <option value="Southern Province">Southern Province</option>
+              </select>
+            </div>
+          </div>
+
+
+          <div class="form-content">
+            <div class="form-header">
+              <h3>More about yourself</h3>
+            </div>
+            <p>Write your small bio to appear on your profile:</p>
+            <div class="form-row">
+              <div class="form-holder w-100">
+                <textarea name="bio" placeholder="Tell us what describes you better." class="form-control" style="height: 99px;"></textarea>
+              </div>
+            </div>
+            <div class="checkbox-circle">
+              <label>
+                 <span class="checkmark"></span>
+                <input type="checkbox" name="terms" checked required>
+                Please confirm that the information you gave is all yours.
+              </label>
+            </div>
+            <div class="form-row">
+              <div class="form-holder">
+                <div class="submit-button">
+                  <button type="submit" name="register">Enroll as a mentor</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+
+document.getElementById("registrationForm").addEventListener("submit", function(event) {
+  // Prevent form submission
+  event.preventDefault();
+ 
+  this.submit();
+});
+
+  </script>
+</body>
+</html>
